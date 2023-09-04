@@ -21,9 +21,9 @@ const ArtDetail = () => {
             {item?.title}
           </Typography>
         </Grid>
-        <Typography>{cleanHtml}</Typography>
+        <Typography data-testid="content">{cleanHtml}</Typography>
         <div className="main-container__inner__icon">
-          <Link to="/">
+          <Link to="/" data-testid="return-link">
             <ArrowBackIos />
           </Link>
         </div>

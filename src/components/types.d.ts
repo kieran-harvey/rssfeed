@@ -12,7 +12,9 @@ export interface ArticleItem {
     img:string | null | undefined,
 }
 
-export interface OrderItemsTypes { 
-    items: Array<>,
-    type:'date' | 'abc',
+export interface FilterButtonProps { 
+    order: string,
+    orderType: string,
+    setOrder: (e) => void,
+    setOrderType: (e) => void,
 }

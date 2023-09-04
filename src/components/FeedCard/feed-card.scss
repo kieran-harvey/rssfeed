@@ -1,13 +1,9 @@
 .feed-card-container{
-
-        padding: 1em;
-        // box-shadow: -2px 4px 24px 17px rgba(97, 97, 97, 0)!important;
-        // border-radius: 30px!important;
-        margin:2em;
+       padding: 1em;
+       margin:2em;
        &__top-border{
               width: 70%;
               border-top: 2px solid rgb(167, 157, 157);
               margin: auto;
        }
-
 }

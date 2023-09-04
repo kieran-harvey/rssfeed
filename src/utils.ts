@@ -1,5 +1,5 @@
 import { xml2json } from "xml-js";
-import { ArticleItem, OrderItemsTypes } from "./components/types";
+import { ArticleItem } from "./components/types";
 import { v4 as uuidv4 } from 'uuid';
 
 

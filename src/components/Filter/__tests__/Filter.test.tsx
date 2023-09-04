@@ -6,7 +6,7 @@ describe("Test Block Filter Component", () => {
   const setFilter = jest.fn();
   it("should render the component", () => {
     render(
-      <MemoryRouter initialEntries={["/2ae54b6b-f1d0-4184-bc5c-141d6f583b31"]}>
+      <MemoryRouter>
         <Filter setFilter={setFilter} />
       </MemoryRouter>
     );

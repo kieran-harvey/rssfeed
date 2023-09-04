@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { buildArticleItems, orderItems } from "../../utils";
-import { Filter, OptionButtons, FeedCard } from "../";
+import { Filter, FilterButtons, FeedCard } from "../";
 import { ArticleItem } from "../types";
 import "./feed.scss";
 
@@ -13,7 +13,7 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response: any = await fetch(
+      const response = await fetch(
         "https://www.xatakandroid.com/tag/feeds/rss2.xml"
       );
       const data = await response.text();
@@ -36,7 +36,7 @@ const Feed = () => {
     >
       <Grid item xs={8}>
         <Filter setFilter={setFilter} />
-        <OptionButtons
+        <FilterButtons
           setOrder={setOrder}
           setOrderType={setOrderType}
           order={order}

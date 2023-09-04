@@ -1,7 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import FeedCard from "../FeedCard";
 import { MemoryRouter } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
 
 describe("Test Block FeedCard Component", () => {
   const item = {
@@ -15,7 +14,7 @@ describe("Test Block FeedCard Component", () => {
   };
   it("should render the component and the title", () => {
     render(
-      <MemoryRouter initialEntries={["/2ae54b6b-f1d0-4184-bc5c-141d6f583b31"]}>
+      <MemoryRouter>
         <FeedCard item={item} />
       </MemoryRouter>
     );
@@ -25,7 +24,7 @@ describe("Test Block FeedCard Component", () => {
 
   it("should render the component and the image", () => {
     render(
-      <MemoryRouter initialEntries={["/"]}>
+      <MemoryRouter>
         <FeedCard item={item} />
       </MemoryRouter>
     );
@@ -41,6 +40,5 @@ describe("Test Block FeedCard Component", () => {
     );
     const link = screen.getAllByRole("link");
     expect(link).toBeDefined();
-    // fireEvent('click', link);
   });
 });

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
 import { IconButton, Grid } from "@mui/material";
 import AbcIcon from "@mui/icons-material/Abc";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import NorthIcon from "@mui/icons-material/North";
 import SouthIcon from "@mui/icons-material/South";
-import "./options-button.scss";
+import "./filter-buttons.scss";
+import { FilterButtonProps } from "../types";
 
-const OptionButtons = ({ setOrder, setOrderType, order, orderType }) => {
+const FilterButtons = (props: FilterButtonProps) => {
+  const { setOrder, setOrderType, order, orderType } = props;
   return (
     <Grid item xs={12}>
       <div className="order-group">
@@ -39,4 +40,4 @@ const OptionButtons = ({ setOrder, setOrderType, order, orderType }) => {
   );
 };
 
-export default OptionButtons;
+export default FilterButtons;

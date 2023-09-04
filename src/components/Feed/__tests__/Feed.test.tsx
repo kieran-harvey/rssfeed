@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import Feed from "../Feed";
 import { MemoryRouter } from "react-router-dom";
 
-describe("Test Block FeedCard Component", () => {
+describe("Test Block Feed Component", () => {
   it("should render the component", () => {
     render(
       <MemoryRouter>
