@@ -11,6 +11,7 @@ describe("Test Block FeedCard Component", () => {
     author: "Pepe",
     desc: "Description",
     shortDesc: "Short Description",
+    img: "",
   };
   it("should render the component and the title", () => {
     render(

@@ -12,7 +12,6 @@ describe("Test Block Filter Component", () => {
     );
     const inputElem = screen.getByLabelText("Filtrar");
     expect(inputElem).toBeDefined();
-    console.log("inputElem", inputElem);
   });
   it("should change when the user types", () => {
     render(

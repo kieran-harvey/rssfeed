@@ -4,13 +4,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-      <TitleBar />
-      <Routes>
-        <Route path="/" element={<Feed />} />
-        <Route path="/:id" element={<ArtDetail />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="app" data-testid="app">
+      <BrowserRouter>
+        <TitleBar />
+        <Routes>
+          <Route path="/" element={<Feed />} />
+          <Route path="/:id" element={<ArtDetail />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

@@ -7,19 +7,19 @@ const getFirstImage = (html:string) => {
     const parsedHtml = new DOMParser().parseFromString(html, "text/html");
     return parsedHtml.querySelector('img')?.getAttribute('src')
 }
-
+ 
 const getFirstParagraph = (html: string) =>{ 
     const parsedHtml = new DOMParser().parseFromString(html, "text/html");
     return parsedHtml.querySelectorAll('p')[1].textContent
 }
 
-export const buildArticleItems = (rssFeed: any) => { 
+export const buildArticleItems = (rssFeed: string) => { 
     let items:Array<ArticleItem> = [];
     const obj = JSON.parse(
         xml2json(rssFeed, { compact: true, spaces: 4 })
     );
     const auxItems = obj.rss.channel.item;
-
+    
     auxItems.map((item:any) => {
         return items.push({
             id:uuidv4(),
@@ -41,11 +41,19 @@ export const buildArticleItems = (rssFeed: any) => {
 export const orderItems = (items,type,orderType) => {
     let newItems;
     if (type === 'date') {
-        return newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? 1 : 0)
-    } else { 
-        return newItems = items.sort((a, b) => (a.title > b.title) ? 1 : (a.title < b.title ? -1 : 0))
-    }
+        if (orderType ==="asc") {
+            return newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? 1 : 0)
+         } else { 
+            return newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? 1 : 0)
+        }
         
+    } else {
+        if (orderType === 'asc') {
+        return newItems = items.sort((a, b) => (a.title < b.title) ? 1 : (a.title > b.title ? -1 : 0))    
+         } else { 
+        return newItems = items.sort((a, b) => (a.title > b.title) ? 1 : (a.title < b.title ? -1 : 0))
+        }     
+    } 
 }
 
 

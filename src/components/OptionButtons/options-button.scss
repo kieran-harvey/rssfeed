@@ -1,10 +1,18 @@
 .order-group{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: end;
     flex-direction: row;
-    padding: .5em;
-    background-color: #1976d2;
+    padding: 1em;
     border-radius: 25px;
     color: white;
+
+    .selected{
+        background-color: #7598f1c9;
+        font-weight: bolder;
+    }
+
+    &__icon-group{
+        margin: 1em;
+    }
 }

@@ -1,40 +1,56 @@
-import React, { useEffect, useState } from "react";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { Grid } from "@mui/material";
+import React, { useEffect, useMemo, useState } from "react";
+import { Grid, Typography } from "@mui/material";
 import { buildArticleItems, orderItems } from "../../utils";
 import { Filter, OptionButtons, FeedCard } from "../";
+import { ArticleItem } from "../types";
+import "./feed.scss";
 
 const Feed = () => {
-  const config: AxiosRequestConfig = {
-    method: "get",
-    url: "https://www.xatakandroid.com/tag/feeds/rss2.xml",
-    headers: {
-      "Content-Type": "application/xml; charset=utf-8",
-    },
-  };
-  const [rssData, setRssData] = useState<any>([]);
-  const [filter, setFilter] = useState("");
-  const [order, setOrder] = useState("");
-  const [orderType, setOrderType] = useState("");
+  const [rssData, setRssData] = useState<ArticleItem[]>([]);
+  const [filter, setFilter] = useState<string>("");
+  const [order, setOrder] = useState<string>("date");
+  const [orderType, setOrderType] = useState<string>("desc");
 
   useEffect(() => {
     const fetchData = async () => {
-      const response: AxiosResponse = await axios(config);
-      const items = buildArticleItems(response.data);
-      console.log(items);
+      const response: any = await fetch(
+        "https://www.xatakandroid.com/tag/feeds/rss2.xml"
+      );
+      const data = await response.text();
+      const items = buildArticleItems(data);
       setRssData(items);
     };
     fetchData();
-  }, [config]);
+  }, []);
 
-  useEffect(() => {
-    setRssData(orderItems(rssData, order, orderType));
-  }, [order, orderType, rssData]);
+  useMemo(() => {
+    setRssData((prev) => orderItems(prev, order, orderType));
+  }, [order, orderType]);
 
   return (
-    <Grid container justifyContent="center" alignItems="center">
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
+      data-testid="feed-container"
+    >
       <Grid item xs={8}>
         <Filter setFilter={setFilter} />
+        <OptionButtons
+          setOrder={setOrder}
+          setOrderType={setOrderType}
+          order={order}
+          orderType={orderType}
+        />
+      </Grid>
+      <Grid item xs={8} alignItems="center" display="flex">
+        <Grid item xs={3}>
+          Ordered by:{" "}
+          <strong>
+            {order === "abc" ? "Title" : "Date"},
+            {orderType === "asc" ? " Ascending" : " Descending"}
+          </strong>
+        </Grid>
       </Grid>
       <Grid item xs={8}>
         {rssData?.map((item: any) => {
