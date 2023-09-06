@@ -13,7 +13,7 @@ const FilterButtons = (props: FilterButtonProps) => {
               <Button
                 key={button.id}
                 id={button.id}
-                onClick={() => button.fun("new")}
+                onClick={button.fun}
                 className={button.selected === button.id ? "selected" : ""}
               >
                 {button.text}
