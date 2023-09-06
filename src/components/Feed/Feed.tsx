@@ -8,8 +8,8 @@ import "./feed.scss";
 const Feed = () => {
   const [rssData, setRssData] = useState<ArticleItem[]>([]);
   const [filter, setFilter] = useState<string>("");
-  const [order, setOrder] = useState<string>("date");
-  const [orderType, setOrderType] = useState<string>("desc");
+  const [order, setOrder] = useState<string>("new");
+  // const [orderType, setOrderType] = useState<string>("desc");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,8 +24,23 @@ const Feed = () => {
   }, []);
 
   useMemo(() => {
-    setRssData((prev) => orderItems(prev, order, orderType));
-  }, [order, orderType]);
+    setRssData((prev) => orderItems(prev, order));
+  }, [order]);
+
+  const filterButtonOptions = [
+    {
+      id: "new",
+      text: "Más nuevos",
+      fun: () => setOrder("new"),
+      selected: order,
+    },
+    {
+      id: "old",
+      text: "Más antiguos",
+      fun: () => setOrder("old"),
+      selected: order,
+    },
+  ];
 
   return (
     <Grid
@@ -36,14 +51,9 @@ const Feed = () => {
     >
       <Grid item xs={8}>
         <Filter setFilter={setFilter} />
-        <FilterButtons
-          setOrder={setOrder}
-          setOrderType={setOrderType}
-          order={order}
-          orderType={orderType}
-        />
+        <FilterButtons filterButtonOptions={filterButtonOptions} />
       </Grid>
-      <Grid item xs={8} alignItems="center" display="flex">
+      {/* <Grid item xs={8} alignItems="center" display="flex">
         <Grid item xs={3}>
           Ordered by:{" "}
           <strong>
@@ -51,7 +61,7 @@ const Feed = () => {
             {orderType === "asc" ? " Ascending" : " Descending"}
           </strong>
         </Grid>
-      </Grid>
+      </Grid> */}
       <Grid item xs={8}>
         {rssData?.map((item: any) => {
           return (

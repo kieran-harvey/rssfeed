@@ -13,8 +13,15 @@ export interface ArticleItem {
 }
 
 export interface FilterButtonProps { 
-    order: string,
-    orderType: string,
-    setOrder: (e) => void,
-    setOrderType: (e) => void,
+    filterButtonOptions: FilterButtonsButton[],
 }
+
+export interface FilterButtonsButton   {
+        id: string,
+        text: string,
+        fun: (e) => void;
+        selected:string
+    }
+
+
+ 

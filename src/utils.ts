@@ -38,22 +38,14 @@ export const buildArticleItems = (rssFeed: string) => {
 }
 
 
-export const orderItems = (items,type,orderType) => {
-    let newItems;
-    if (type === 'date') {
-        if (orderType ==="asc") {
-            return newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? 1 : 0)
-         } else { 
-            return newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? 1 : 0)
-        }
-        
-    } else {
-        if (orderType === 'asc') {
-        return newItems = items.sort((a, b) => (a.title < b.title) ? 1 : (a.title > b.title ? -1 : 0))    
-         } else { 
-        return newItems = items.sort((a, b) => (a.title > b.title) ? 1 : (a.title < b.title ? -1 : 0))
-        }     
-    } 
+export const orderItems = (items:Array<ArticleItem>,type:string,orderType?) => {
+    let newItems:Array<ArticleItem>;
+    if (type === 'old') {
+        return newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? 1 : 0)   
+    } else { 
+        return newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? 1 : 0)
+
+    }
 }
 
 
