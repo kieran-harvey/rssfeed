@@ -7,7 +7,15 @@ Project made with React (Hooks,Router), Typescript, Material UI and SASS
 ## Features
 
 Filtering - Filter news articles by title,content or author  
-Sorting - Sort news articles by title or by date, in ascending or descending order
+Sorting - Sort articles by newest or oldest  
+Test Coverage - 80%+
+
+### Future Features
+
+In future updates Context API or Redux Toolkit can be added for state managment  
+A like feature; with like,dislike,favourite; for all articles  
+Filtering via categories  
+Other features...
 
 ## Available Scripts
 
