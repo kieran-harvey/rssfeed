@@ -2,52 +2,38 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import FilterButtons from "../FilterButtons";
 import { MemoryRouter } from "react-router-dom";
 
-describe("Test Block TitleBar Component", () => {
-  const order: string = "";
-  const orderType: string = "";
-  const setOrder: () => void = jest.fn();
-  const setOrderType: () => void = jest.fn();
-  it("should render the component and the 4 filter buttons", () => {
+describe("Test Block Filter Component", () => {
+  const mockFn: () => void = jest.fn();
+  const filterButtonOptions = [
+    {
+      id: "new",
+      text: "Más nuevos",
+      fun: () => mockFn(),
+      selected: "new",
+    },
+    {
+      id: "old",
+      text: "Más antiguos",
+      fun: () => mockFn(),
+      selected: "new",
+    },
+  ];
+  it("should render the component and the 2 filter buttons", () => {
     render(
       <MemoryRouter>
-        <FilterButtons
-          order={order}
-          orderType={orderType}
-          setOrder={setOrder}
-          setOrderType={setOrderType}
-        />
+        <FilterButtons filterButtonOptions={filterButtonOptions} />
       </MemoryRouter>
     );
-    expect(screen.getAllByRole("button")).toHaveLength(4);
+    expect(screen.getAllByRole("button")).toHaveLength(2);
   });
   it("should render the component and call setOrder", () => {
     render(
       <MemoryRouter>
-        <FilterButtons
-          order={order}
-          orderType={orderType}
-          setOrder={setOrder}
-          setOrderType={setOrderType}
-        />
+        <FilterButtons filterButtonOptions={filterButtonOptions} />
       </MemoryRouter>
     );
     const button = screen.getAllByRole("button")[0];
     fireEvent.click(button);
-    expect(setOrder).toHaveBeenCalledTimes(1);
-  });
-  it("should render the component and call setOrderType", () => {
-    render(
-      <MemoryRouter>
-        <FilterButtons
-          order={order}
-          orderType={orderType}
-          setOrder={setOrder}
-          setOrderType={setOrderType}
-        />
-      </MemoryRouter>
-    );
-    const button = screen.getAllByRole("button")[2];
-    fireEvent.click(button);
-    expect(setOrderType).toHaveBeenCalledTimes(1);
+    expect(mockFn).toHaveBeenCalledTimes(1);
   });
 });

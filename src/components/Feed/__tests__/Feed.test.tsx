@@ -12,4 +12,22 @@ describe("Test Block Feed Component", () => {
     const feed = screen.getByTestId("feed-container");
     expect(feed).toBeDefined();
   });
+
+  it("should render the filter", () => {
+    render(
+      <MemoryRouter>
+        <Feed />
+      </MemoryRouter>
+    );
+    expect(screen.getByText(/Filtrar/i)).toBeDefined();
+  });
+
+  it("should render the buttons", () => {
+    render(
+      <MemoryRouter>
+        <Feed />
+      </MemoryRouter>
+    );
+    expect(screen.getAllByRole("button")).toBeDefined();
+  });
 });

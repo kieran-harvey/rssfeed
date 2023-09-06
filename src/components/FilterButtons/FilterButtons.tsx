@@ -11,6 +11,7 @@ const FilterButtons = (props: FilterButtonProps) => {
           {filterButtonOptions.map((button: FilterButtonsButton) => {
             return (
               <Button
+                key={button.id}
                 id={button.id}
                 onClick={() => button.fun("new")}
                 className={button.selected === button.id ? "selected" : ""}

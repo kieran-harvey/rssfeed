@@ -31,9 +31,6 @@ export const buildArticleItems = (rssFeed: string) => {
             img: getFirstImage(item.description._cdata)
         })
     })
-
-    console.log(obj);
-
     return items
 }
 
@@ -41,11 +38,11 @@ export const buildArticleItems = (rssFeed: string) => {
 export const orderItems = (items:Array<ArticleItem>,type:string,orderType?) => {
     let newItems:Array<ArticleItem>;
     if (type === 'old') {
-        return newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? 1 : 0)   
+        newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? 1 : 0)   
     } else { 
-        return newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? 1 : 0)
-
+        newItems = items.sort((a, b) => (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? -1 : (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? 1 : 0)
     }
+    return newItems
 }
 
 

@@ -5,7 +5,7 @@ import "./feed-card.scss";
 
 const FeedCard = ({ item }: FeedCardProps) => {
   return (
-    <Card className="feed-card-container">
+    <Card className="feed-card-container" data-testid="feed-card-container">
       <CardContent>
         <Grid container justifyContent="center" alignItems="center">
           <Grid item xs={8}>
