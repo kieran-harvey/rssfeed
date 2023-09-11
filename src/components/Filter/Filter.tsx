@@ -3,7 +3,7 @@ import { Grid, TextField } from "@mui/material";
 
 const Filter = ({ setFilter }) => {
   return (
-    <Grid container m={2} pt={1} justifyContent="flex-end">
+    <Grid container mt={2} pt={1} justifyContent="flex-end">
       <Grid item xs={3}>
         <TextField
           id="filter"

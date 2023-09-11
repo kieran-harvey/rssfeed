@@ -45,21 +45,13 @@ export const orderItems = (items:Array<ArticleItem>,type:string,orderType?) => {
     return newItems
 }
 
+export const fetchData =  async () => { 
+    const response = await fetch(
+        "https://www.xatakandroid.com/tag/feeds/rss2.xml"
+      );
+      const data = await response.text();
+      const items = buildArticleItems(data);
+      return items
+}
 
-// export const sortMethods = {
-//     abc: {
-//         descending: { method: (a, b) => (a.title < b.title) ? 1 : (a.title > b.title ? -1 : 0) },
-//         none: { method: (a, b) => null },
-//         ascending: { method: undefined },
-//     },
-//     date: {
-//         descending: {method:(a, b) => (new Date(a.pubDate).getTime() < new Date(b.pubDate).getTime()) ? 1 : (new Date(a.pubDate).getTime() > new Date(b.pubDate).getTime()) ? -1 : 0},
-//         none: { method: (a, b) => null },
-//         ascending: { method: undefined },
-//     },
-//     none: {
-//         none: { method: (a, b) => null },
-//     }
-
-//   };
 

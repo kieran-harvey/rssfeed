@@ -1,0 +1,13 @@
+.loading-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 125px;
+    &__button{
+        span span{
+            width: 120px!important;
+            height: 120px!important;
+            color: black;
+        }
+    }
+}
